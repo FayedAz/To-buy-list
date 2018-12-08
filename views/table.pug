@@ -1,0 +1,28 @@
+include ./teamLink.pug
+
+mixin table(table)
+    table(class="table table-striped")
+        thead(class="thead-dark")
+            tr
+                th
+                th #{__('MP')}
+                th #{__('W')}
+                th #{__('D')}
+                th #{__('L')}
+                th #{__('GF')}
+                th #{__('GA')}
+                th #{__('+/-')}
+                th #{__('PTS')}
+        tbody
+            each stats in table
+                tr  
+                    td 
+                        +teamLink(stats.team)
+                    td #{stats.playedMatchCount}
+                    td #{stats.wonMatchCount}
+                    td #{stats.drawMatchCount}
+                    td #{stats.lostMatchCount}
+                    td #{stats.goalForCount}
+                    td #{stats.goalAgainstCount}
+                    td #{stats.goalDifference}
+                    td #{stats.pointCount}

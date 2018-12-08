@@ -1,0 +1,50 @@
+extends layout.pug
+
+include myTable.pug
+include errors
+
+block title
+    | #{__('Administration')}
+
+block content
+    +errors(errors)
+    div(class="col-8")
+        +myTable(articles)
+        br
+        table(class='table table-striped')
+            tbody
+                form(
+                    method="POST" 
+                    action="/admin/article" 
+                    class="form-inline")
+                    input(type="hidden" name="_csrf" value=csrf)  
+                    input(type="hidden" name="user" value=articleData.user) 
+                    input(type="hidden" name="bought" value=articleData.bought) 
+                    tr
+                        td 
+                            input(
+                                class="form-control" 
+                                type="text" 
+                                value=articleData.name
+                                name="name"
+                                placeholder="Nom de l'article"
+                                required)
+                        td
+                            input(
+                                class="form-control" 
+                                type="number" 
+                                value=articleData.qty
+                                min="0"
+                                name="qty"
+                                placeholder="Quantité"
+                                required)
+                        td 
+                            input(
+                                class="form-control" 
+                                type="text" 
+                                value=articleData.measure
+                                name="measure"
+                                placeholder="Mesure"
+                                required)
+                        td
+                            button(class="btn btn-primary" type="submit") #{__('Add')}

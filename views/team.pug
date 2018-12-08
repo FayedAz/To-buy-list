@@ -1,0 +1,21 @@
+extends layout.pug
+include ./table.pug
+
+block title
+    | Ranking
+
+block content
+    h4 Ranking
+    +table([statistics])
+        
+    h4 Matches
+    table(class="table table-striped")
+        tbody
+            each match in matches
+                tr  
+                    td #{dateFormat(match.date, __('dateFormat'))}
+                    td 
+                        +teamLink(match.teams[0])
+                    td #{match.scores[0]} - #{match.scores[1]}
+                    td 
+                        +teamLink(match.teams[1])

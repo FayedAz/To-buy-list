@@ -1,0 +1,53 @@
+{
+  "name": "projet1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "fillDB": "gulp fillDB",
+    "dropDB": "gulp dropDB",
+    "build": "gulp build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "connect-mongodb-session": "^2.0.3",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "dateformat": "^3.0.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.3",
+    "express-brute": "^1.0.1",
+    "express-session": "^1.15.6",
+    "helmet": "^3.14.0",
+    "mongodb": "^3.1.6",
+    "pug": "^2.0.3",
+    "yarn": "^1.12.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^2.0.0",
+    "@types/chai": "^4.1.4",
+    "@types/connect-mongodb-session": "0.0.0",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/csurf": "^1.9.35",
+    "@types/dateformat": "^1.0.1",
+    "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
+    "@types/express-brute": "0.0.37",
+    "@types/express-session": "^1.15.10",
+    "@types/helmet": "0.0.42",
+    "@types/i18n": "^0.8.3",
+    "@types/mocha": "^5.2.5",
+    "@types/mongodb": "^3.1.9",
+    "chai": "^4.1.2",
+    "gulp": "^4.0.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "i18n": "^0.8.3",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.1"
+  }
+}

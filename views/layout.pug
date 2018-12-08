@@ -1,0 +1,24 @@
+doctype html
+html(lang="fr")
+    head
+        title= title
+        link(href='/bootstrap/bootstrap.min.css', rel='stylesheet')
+        script(src='/bootstrap/bootstrap.min.js')
+        link(href='/icons/material-icons.css', rel='stylesheet')
+    body
+        header
+            div(class='navbar navbar-dark bg-dark')
+                div(class="container")
+                    div
+                        a(class="navbar-brand" href="/")
+                            i(class="material-icons") home
+                        span(class="navbar-brand") 
+                            block title
+                    if loggedUser
+                        form(class="form-inline")
+                                span(class="form-control mr-sm-2") #{loggedUser.username}
+                                a(href="/auth/logOut" class="btn btn-primary") #{__('Log out')}
+        main
+            div(class='container')
+                br
+                block content

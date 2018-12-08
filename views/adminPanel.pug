@@ -1,0 +1,99 @@
+extends layout.pug
+
+include errors
+
+block title
+    | #{__('Administration')}
+
+block content
+    +errors(errors)
+    div(class="row")
+        div(class="col")
+            h4 #{__('Teams')}
+            table(class='table table-striped')
+                tbody
+                    form(method="POST" action="/admin/teams" class="form-inline")
+                        input(type="hidden" name="_csrf" value=csrf)
+
+                        tr
+                            td
+                                input(
+                                    name="name"
+                                    class="form-control" 
+                                    minLength="3"
+                                    maxLength="20"
+                                    type="text" 
+                                    value=teamData.name
+                                    required)
+                            td
+                                button(class="btn btn-primary" type="submit") #{__('Add')}
+                    each team in teams
+                        tr
+                            td #{team.name}
+                            td
+        div(class="col-8")
+            h4 #{__('Matches')}
+            table(class='table table-striped')
+                tbody
+                    form(
+                        method="POST" 
+                        action="/admin/matches" 
+                        class="form-inline")
+                        input(type="hidden" name="_csrf" value=csrf)
+
+                        tr
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="date"
+                                    value=matchData.date
+                                    name="date"
+                                    required)
+                            td
+                                select(class="form-control" name="team0" required)
+                                    each team in teams
+                                        option(
+                                            value=team._id 
+                                            selected=team._id.equals(matchData.team0)) #{team.name}
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="number" 
+                                    value=matchData.score0
+                                    min="0"
+                                    max="100"
+                                    name="score0"
+                                    required)
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="number" 
+                                    value=matchData.score1
+                                    min="0"
+                                    max="100"
+                                    name="score1"
+                                    required)
+                            td
+                                select(class="form-control" name="team1")
+                                    each team in teams
+                                        option(
+                                            value=team._id 
+                                            selected=team._id.equals(matchData.team1)) #{team.name}
+                            td
+                                button(class="btn btn-primary" type="submit") #{__('Add')}
+                    each match in matches
+                            tr
+                                td #{dateFormat(match.date, __('dateFormat'))}
+                                td #{match.teams[0].name}
+                                td #{match.scores[0]} 
+                                td #{match.scores[1]}
+                                td #{match.teams[1].name}
+                                td 
+                                    form(
+                                        action="/admin/deleteMatch"
+                                        method="POST"
+                                    )
+                                        input(type="hidden" name="_csrf" value=csrf)
+                                        input(type="hidden" name="id" value=match._id)
+                                        button(class="btn btn-link" type="submit")
+                                            i(class="material-icons") delete

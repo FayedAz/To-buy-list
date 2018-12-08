@@ -1,0 +1,23 @@
+mixin myTable(table)
+    table(class="table table-striped")
+        thead(class="thead-dark")
+            tr
+                th
+                th #{__('article')}
+                th #{__('qty')}
+                th #{__('measure')}
+                th
+        tbody
+            each article in table
+                tr  
+                    td
+                    td #{article.name}
+                    td #{article.qte}
+                    td #{article.measure}
+                    td
+                        button(class="btn btn-dark") Acheté
+                                    
+
+    
+
+        
